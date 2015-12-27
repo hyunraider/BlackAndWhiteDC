@@ -5,10 +5,12 @@ Router.configure({
     'about': {to: 'about'},
     'blog': {to: 'blog'},
     'contact': {to: 'contact'},
-    'gallery': {to: 'gallery'}
+    'gallery': {to: 'gallery'},
+    'private': {to: 'private'}
   }
 });
 
 Router.map(function(){
   this.route('/', 'layout');
+  this.route('/gallery', 'gallery');
 });
