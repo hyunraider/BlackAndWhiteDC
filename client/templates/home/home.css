@@ -1,5 +1,39 @@
 body {
-  background-image: url('urban.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: black;
+}
+#homefirsthalf {
+  background-color: white;
+}
+#homesecondhalf {
+  background-color: black;
+}
+.imageWrapper {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.image {
+  position: relative;
+}
+.round-tr {
+  border-radius: 0px 20px 0px 0px;
+}
+.round-tl {
+  border-radius: 20px 0px 0px 0px;
+}
+.round-br {
+  border-radius: 0px 0px 20px 0px;
+}
+.round-bl {
+  border-radius: 0px 0px 0px 20px;
+}
+li a {
+  color: white;
+}
+.inactivelink {
+  pointer-events: none;
+  cursor: default;
+}
+.navbar-nav {
+    display: inline-block;
+    float: none;
 }

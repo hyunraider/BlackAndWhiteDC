@@ -11,6 +11,18 @@ Router.configure({
 });
 
 Router.map(function(){
-  this.route('/', 'layout');
-  this.route('/gallery', 'gallery');
+  this.route('/', {
+    path: '/',
+    template: 'layout',
+    data: function(){
+      Session.set('url', 'home');
+    }
+  });
+  this.route('Pages', {
+    path: '/:name',
+    template: 'layout',
+    data: function(){
+      Session.set('url', this.params.name);
+    }
+  });
 });

@@ -21,10 +21,14 @@
         <label for="inputName">Price</label>
         <input type="number" class="form-control" id="inputPrice" placeholder="">
       </div>
-      <div class="form-group">
-        <label for="exampleInputFile">File input</label>
-        <input type="file" id="exampleInputFile">
-        <p class="help-block">Example block-level help text here.</p>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="dropzone" class="dropzone">
+            <div class="well well-drop-zone">
+              Drop file(s) here to upload
+            </div>
+          </div>
+        </div>
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
