@@ -1,12 +1,24 @@
 Template.gallery.events({
-  "dropped #dropzone": function(e){
-    console.log('files dropped');
+  'submit form': function(e, t) {
+    e.preventDefault();
 
-      // If using the cfs api
-    FS.Utility.eachFile(e, function(file) {
-      var newFile = new FS.File(file);
-      Images.insert(newFile);
-      console.log('Inserted file');
+    var files = [];
+    var file = $('#userimage')[0].files[0];
+    var name = $('#inputName').val();
+    var description = $('#inputDescription').val();
+    var category = $('#inputCategory').val();
+    var price = $('#inputPrice').val();
+    console.log(name + " " + description + " " + category + " " + price);
+    files.push(file);
+    console.log(file);
+    ImageInfo.insert({name: name, description: description, category: category, price: price});
+
+    Cloudinary.upload(files, {
+      public_id: name
+    }, function(result){console.log(result);});
+
+    $('#submitPicture').each(function(){
+      this.reset();
     });
   }
 });
