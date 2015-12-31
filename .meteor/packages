@@ -26,3 +26,6 @@ cfs:filesystem
 cfs:dropbox
 lepozepo:cloudinary
 autopublish
+accounts-ui
+accounts-password
+deepwell:authorization

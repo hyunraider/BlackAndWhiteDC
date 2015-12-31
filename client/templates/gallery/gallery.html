@@ -1,5 +1,9 @@
 <template name="gallery">
-  {{>galleryedit}}
+  {{>navigation}}
+  {{#if isAdmin}}
+    {{>galleryedit}}
+  {{/if}}
+  {{>footer}}
 </template>
 
 <template name="galleryedit">
@@ -26,4 +30,8 @@
     </form>
   </div>
   <img src="{{c.url 'egzwtqc9fvl5idgitkuw'}}"/>
+</template>
+
+<template name="gallerypost">
+
 </template>

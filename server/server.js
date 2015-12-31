@@ -6,5 +6,8 @@ Cloudinary.config({
 Meteor.methods({
     removeAll: function(){
         ImageInfo.remove({});
+    },
+    showID: function(){
+      console.log(Meteor.userId());
     }
 });

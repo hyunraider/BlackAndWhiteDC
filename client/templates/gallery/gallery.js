@@ -22,3 +22,9 @@ Template.gallery.events({
     });
   }
 });
+
+Template.gallery.helpers({
+  isAdmin: function(){
+    return Meteor.userId()===Meteor.users.findOne({username: "admin"})["_id"];
+  }
+});

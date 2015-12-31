@@ -338,11 +338,15 @@
   <div id="homesecondhalf">
 
   </div>
+  {{>navigation}}
+  {{>footer}}
+</template>
+<template name="navigation">
   <div class="container-fluid" style="text-align: center; color: white">
     <h3>Monica Schneider Photography</h3>
     <div class="container-fluid center-block">
       <ul class="nav navbar-nav" >
-        <li><a href="#">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="#" class="inactivelink">|</a></li>
         <li><a href="/gallery">Gallery</a></li>
         <li><a href="#" class="inactivelink">|</a></li>
@@ -353,5 +357,10 @@
         <li><a href="/blog">Photo Essays</a></li>
       </ul>
     </div>
+  </div>
+</template>
+<template name="footer">
+  <div class="container-fluid" style="background-color: white">
+    {{> loginButtons}}
   </div>
 </template>
