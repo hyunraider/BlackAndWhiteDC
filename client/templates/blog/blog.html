@@ -1,4 +1,51 @@
 <template name="blog">
   {{>navigation}}
+  {{#if isAdmin}}
+    {{> blogpost}}
+  {{/if}}
+  {{#each blogposts}}
+    {{>blogshow}}
+  {{/each}}
   {{>footer}}
+</template>
+
+<template name="blogpost">
+  <div class="well well-lg">
+    <form id="blogpost">
+      <h3>Blog Entry</h3>
+      <div class="form-group">
+        <label for="inputTitle">Title</label>
+        <input type="text" class="form-control" id="inputTitle" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label for="inputDescription">Location</label>
+        <input type="text" class="form-control" id="inputLocation" placeholder="">
+      </div>
+      <label>This is where you put your shit</label>
+      <div id="summernote">
+        Hello summernote
+      </div>
+      <label>Picture Attachment</label>
+      <input type="file" id="userimage" name="userimage"/>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</template>
+
+<template name="blogshow">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{title}}</h3>
+    </div>
+    <div class="panel-body">
+      <h4>Picture taken in {{location}}</h4>
+      <a href="#"><img src="{{c.url formatTitle}}" class="img img-responsive full-width" style="width:200px"/></a>
+      <p>
+        {{{content}}}
+      </p>
+    </div>
+    <div class="panel-footer">
+      {{formatTime timeCreated}}
+    </div>
+  </div>
 </template>
