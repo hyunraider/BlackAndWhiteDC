@@ -6,8 +6,12 @@
   <div class="container-fluid">
     <div class="row">
       {{#each images}}
+      {{#if isAdmin}}
+        <button class="glyphicon glyphicon-remove" id='{{this.name}}'></button>
+        <br>
+      {{/if}}
       <div class="col-md-2 galleryimage">
-        <a href="#"><img src="{{c.url this.name}}" class="img img-responsive full-width"/></a>
+        <a href="#"><img src="{{c.url (nameHelper this.name)}}" class="img img-responsive full-width"/></a>
         <button type="submit" name="btn btn-default">Add to Cart</button>
       </div>
       {{/each}}

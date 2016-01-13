@@ -14,12 +14,21 @@ Template.gallery.events({
     ImageInfo.insert({name: name, description: description, category: category, price: price});
 
     Cloudinary.upload(files, {
-      public_id: name
+      public_id: 'BnW/' + name
     }, function(result){console.log(result);});
 
     $('#submitPicture').each(function(){
       this.reset();
     });
+  },
+  'click .glyphicon-remove': function(e, t){
+    e.preventDefault();
+
+    Cloudinary.delete('BnW/' + e.target.id, function(result){
+      console.log(result);
+    });
+
+    ImageInfo.remove({_id: ImageInfo.findOne({name: e.target.id})["_id"]});
   }
 });
 
@@ -29,5 +38,8 @@ Template.gallery.helpers({
   },
   images: function(){
     return ImageInfo.find({});
+  },
+  nameHelper: function(name){
+    return 'BnW/' + name;
   }
 });
