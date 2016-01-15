@@ -21,7 +21,7 @@
         <label for="inputDescription">Location</label>
         <input type="text" class="form-control" id="inputLocation" placeholder="">
       </div>
-      <label>This is where you put your shit</label>
+      <label>Content</label>
       <div id="summernote">
         Hello summernote
       </div>
@@ -33,6 +33,9 @@
 </template>
 
 <template name="blogshow">
+  {{#if isAdmin}}
+        <button class="glyphicon glyphicon-remove" id='{{title}}'></button>
+  {{/if}}
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">{{title}}</h3>

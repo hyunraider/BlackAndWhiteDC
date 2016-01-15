@@ -1,0 +1,18 @@
+.gallerypost {
+	position: fixed;
+	left: 5%;
+	right: 5%;
+	width: 90%;
+	height: 90%;
+	top: 5%;
+	right: 5%;
+	background-color: black;
+	border: 2px white solid;
+	z-index: 10000;
+}
+.exit {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	color: black;
+}

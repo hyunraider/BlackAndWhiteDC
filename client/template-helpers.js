@@ -1,3 +1,3 @@
 Template.registerHelper('formatTime', function(Date){
-	return Date.getMonth() + "/" + Date.getDate() + "/" + Date.getFullYear();
+	return (Date.getMonth()+1) + "/" + Date.getDate() + "/" + Date.getFullYear();
 });

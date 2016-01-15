@@ -4,15 +4,23 @@
     {{>galleryedit}}
   {{/if}}
   <div class="container-fluid">
-    <div class="row">
+    {{>gallerypost}}
+    <div class="row" style="padding-bottom: 10px">
       {{#each images}}
+      <div class="col-sm-3" style="padding: 10px;">
       {{#if isAdmin}}
         <button class="glyphicon glyphicon-remove" id='{{this.name}}'></button>
         <br>
       {{/if}}
-      <div class="col-md-2 galleryimage">
-        <a href="#"><img src="{{c.url (nameHelper this.name)}}" class="img img-responsive full-width"/></a>
-        <button type="submit" name="btn btn-default">Add to Cart</button>
+      <div class="galleryimage" style="position: relative">
+        {{#if isPortrait this.orientation}}
+        <img src="frame3.jpg" style="width:100%">
+        <img src="{{c.url (nameHelper this.name) width=473 height=646 crop="scale"}}" style="position: absolute; width: 84.5%; top: 6.7%; left:8%;" />
+        {{else}}
+        <img src="frame2.jpg" style="width:100%">
+        <img src="{{c.url (nameHelper this.name) width=646 height=473 crop="scale"}}" style="position: absolute; width: 87%; top: 7.9%; left:6.7%;" />
+        {{/if}}
+      </div>
       </div>
       {{/each}}
     </div>
@@ -36,6 +44,10 @@
         <input type="text" class="form-control" id="inputCategory" placeholder="">
       </div>
       <div class="form-group">
+        <label for="inputOrientation">Portrait?</label>
+        <input type="checkbox" id='checkOrientation'>
+      </div>
+      <div class="form-group">
         <label for="inputPrice">Price</label>
         <input type="number" class="form-control" id="inputPrice" placeholder="">
       </div>
@@ -46,5 +58,25 @@
 </template>
 
 <template name="gallerypost">
-
+  <div class="container gallerypost">
+    <div class="row">
+      <div class="col-xs-5 col-xs-offset-1" style="">
+        <img src="#" style="width: 100%;" id="postimage" class="">
+      </div>
+      <div class="col-xs-6" style="color: white">
+        <button class="glyphicon glyphicon-remove exit"></button>
+        <h2 id="posttitle" style="text-align: center"></h2>
+        <h4 style="text-align: center; font-style: italic;">By Monica Schneider</h4>
+        <p id="posttext"></p>
+        <br>
+        <span>Price:</span> <span id="postprice"></span>
+        <br>
+        <span>Quantity</span>
+        <input type="number" id="postquantity" style="color: black; width: 50px; margin-left: 20px; margin-right: 10px" value=0>
+        <button type="submit" class="btn btn-default">Add to Cart</button>
+        <br>
+        <span>Category: </span> <span id='postcategory'></span>
+      </div>
+    </div>  
+  </div>
 </template>

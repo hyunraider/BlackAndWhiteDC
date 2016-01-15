@@ -6,6 +6,11 @@ Template.blog.helpers({
     return Blog.find();
   }
 });
+Template.blogshow.helpers({
+  isAdmin: function () {
+    return Meteor.userId()===Meteor.users.findOne({username: "admin"})["_id"];
+  }
+});
 
 Template.blogpost.onRendered(function(){
   this.$('#summernote').summernote({
@@ -29,7 +34,7 @@ Template.blogpost.events({
     Blog.insert({title: title, location: location, timeCreated: new Date(), content: content});
 
     Cloudinary.upload(files, {
-      public_id: "BLOG_" + title
+      public_id: "BnW/BLOG_" + title
     }, function(result){console.log(result);});
 
     $('#blogpost').each(function(){
@@ -40,6 +45,18 @@ Template.blogpost.events({
 
 Template.blogshow.helpers({
   formatTitle: function(){
-    return "BLOG_" + this.title;
+    return "BnW/BLOG_" + this.title;
   }
-})
+});
+
+Template.blogshow.events({
+  'click .glyphicon-remove': function(e, t){
+    e.preventDefault();
+
+    Cloudinary.delete('BnW/BLOG_' + e.target.id, function(result){
+      console.log(result);
+    });
+
+    Blog.remove({_id: Blog.findOne({title: e.target.id})["_id"]});
+  }
+});

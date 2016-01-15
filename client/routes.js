@@ -6,7 +6,8 @@ Router.configure({
     'blog': {to: 'blog'},
     'contact': {to: 'contact'},
     'gallery': {to: 'gallery'},
-    'private': {to: 'private'}
+    'private': {to: 'private'},
+    'show': {to: 'show'}
   }
 });
 

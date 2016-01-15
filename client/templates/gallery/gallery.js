@@ -8,10 +8,16 @@ Template.gallery.events({
     var description = $('#inputDescription').val();
     var category = $('#inputCategory').val();
     var price = $('#inputPrice').val();
+    var orientation;
+    if ($('#checkOrientation').prop("checked")){
+      orientation = 'portrait';
+    }else{
+      orientation = 'landscape';
+    }
     console.log(name + " " + description + " " + category + " " + price);
     files.push(file);
     console.log(file);
-    ImageInfo.insert({name: name, description: description, category: category, price: price});
+    ImageInfo.insert({name: name, description: description, category: category, price: price, orientation: orientation});
 
     Cloudinary.upload(files, {
       public_id: 'BnW/' + name
@@ -29,6 +35,16 @@ Template.gallery.events({
     });
 
     ImageInfo.remove({_id: ImageInfo.findOne({name: e.target.id})["_id"]});
+  },
+  'click .galleryimage': function(e, t){
+    e.preventDefault;
+    var target = e.target;
+    $('#postimage').attr('src', $(target).attr('src'));
+    $('#posttitle').text(this.name);
+    $('#posttext').text(this.description);
+    $('#postprice').text(this.price);
+    $('#postcategory').text(this.category);
+    $('.gallerypost').show();
   }
 });
 
@@ -41,5 +57,20 @@ Template.gallery.helpers({
   },
   nameHelper: function(name){
     return 'BnW/' + name;
+  },
+  isPortrait: function(orientation){
+    return orientation==='portrait';
+  }
+});
+
+
+Template.gallerypost.onRendered(function(){
+  $('.gallerypost').hide();
+});
+
+Template.gallerypost.events({
+  'click .exit': function (e, t) {
+    e.preventDefault();
+    $('.gallerypost').hide();
   }
 });
