@@ -1,0 +1,11 @@
+.greyTable {
+	background-color: #BEBEBE; 
+	color: white; 
+	height: 70px; 
+	font-size: 2.1em; 
+	font-weight: bold;
+}
+
+td {
+	valign: middle;
+}

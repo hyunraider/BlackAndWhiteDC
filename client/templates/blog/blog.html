@@ -5,6 +5,7 @@
   {{/if}}
   {{#each blogposts}}
     {{>blogshow}}
+    <br> 
   {{/each}}
   {{>footer}}
 </template>
@@ -33,7 +34,30 @@
 </template>
 
 <template name="blogshow">
-  {{#if isAdmin}}
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <table style="width: 100%">
+        <tr class="greyTable"><td style="padding-left: 10px;">{{title}}</td></tr>
+        <tr>
+          <td><img src="{{c.url formatTitle}}" class="img img-responsive full-width"></td>
+        </tr>
+        <tr class="greyTable" style="height: 40px; font-size: 1.2em;">
+          <td colspan="0"><span class="glyphicon glyphicon-globe" style="padding-left: 10px;"></span>
+            <span>{{location}}</span>
+            <span class="pull-right" style="padding-right: 10px;">{{formatTime timeCreated}}</span>
+          </td> 
+        </tr>
+        <tr>
+          <td style="background-color: white; color: black; font-size: 1.2em; padding-left: 10px; padding-right: 10px; font-family: Georgia, serif; padding-top: 5px;">
+            <p>{{{content}}}</p>
+          </td>
+        </tr>
+      </table>
+      
+    </div>
+  </div>
+
+  <!--{{#if isAdmin}}
         <button class="glyphicon glyphicon-remove" id='{{title}}'></button>
   {{/if}}
   <div class="panel panel-primary">
@@ -50,5 +74,5 @@
     <div class="panel-footer">
       {{formatTime timeCreated}}
     </div>
-  </div>
+  </div>-->
 </template>

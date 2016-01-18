@@ -3,7 +3,7 @@
   {{#if isAdmin}}
     {{>galleryedit}}
   {{/if}}
-  <div class="container-fluid">
+  <div class="container-fluid"> 
     {{>gallerypost}}
     <div class="row" style="padding-bottom: 10px">
       {{#each images}}
@@ -12,13 +12,11 @@
         <button class="glyphicon glyphicon-remove" id='{{this.name}}'></button>
         <br>
       {{/if}}
-      <div class="galleryimage" style="position: relative">
+      <div class="galleryimage">
         {{#if isPortrait this.orientation}}
-        <img src="frame3.jpg" style="width:100%">
-        <img src="{{c.url (nameHelper this.name) width=473 height=646 crop="scale"}}" style="position: absolute; width: 84.5%; top: 6.7%; left:8%;" />
+        <img src="{{c.url (nameHelper this.name) width=473 height=646 crop="scale"}}" class="img img-responsive" />
         {{else}}
-        <img src="frame2.jpg" style="width:100%">
-        <img src="{{c.url (nameHelper this.name) width=646 height=473 crop="scale"}}" style="position: absolute; width: 87%; top: 7.9%; left:6.7%;" />
+        <img src="{{c.url (nameHelper this.name) width=646 height=473 crop="scale"}}" class="img img-responsive" />
         {{/if}}
       </div>
       </div>
@@ -58,7 +56,7 @@
 </template>
 
 <template name="gallerypost">
-  <div class="container gallerypost">
+  <div class="container gallerypost" style="display:none;">
     <div class="row">
       <div class="col-xs-5 col-xs-offset-1" style="">
         <img src="#" style="width: 100%;" id="postimage" class="">

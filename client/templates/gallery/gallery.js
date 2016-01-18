@@ -63,11 +63,6 @@ Template.gallery.helpers({
   }
 });
 
-
-Template.gallerypost.onRendered(function(){
-  $('.gallerypost').hide();
-});
-
 Template.gallerypost.events({
   'click .exit': function (e, t) {
     e.preventDefault();
