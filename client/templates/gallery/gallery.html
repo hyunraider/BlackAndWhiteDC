@@ -3,24 +3,32 @@
   {{#if isAdmin}}
     {{>galleryedit}}
   {{/if}}
-  <div class="container-fluid"> 
-    {{>gallerypost}}
-    <div class="row" style="padding-bottom: 10px">
-      {{#each images}}
-      <div class="col-sm-3" style="padding: 10px;">
-      {{#if isAdmin}}
-        <button class="glyphicon glyphicon-remove" id='{{this.name}}'></button>
-        <br>
-      {{/if}}
-      <div class="galleryimage">
-        {{#if isPortrait this.orientation}}
-        <img src="{{c.url (nameHelper this.name) width=473 height=646 crop="scale"}}" class="img img-responsive" />
-        {{else}}
-        <img src="{{c.url (nameHelper this.name) width=646 height=473 crop="scale"}}" class="img img-responsive" />
+  <div class="row">
+    <div class="col-sm-2">
+      <h3 style="color:white; text-align: center; font-family: Cambria, Georgia, serif">Photo Category</h3>
+      <ul id="categorylisting" style="color:white">
+
+      </ul>
+    </div>
+    <div class="container col-sm-10"> 
+      {{>gallerypost}}
+      <div class="grid master">
+        {{#each images categoryMaker}}
+        <div class="grid-item">
+        {{#if isAdmin}}
+          <button class="glyphicon glyphicon-remove" id='{{this.name}}'></button>
+          <br>
         {{/if}}
+        <div class="galleryimage" style="">
+          {{#if isPortrait this.orientation}}
+          <img src="{{c.url (nameHelper this.name) width=473 height=646 crop="scale"}}" class="img img-responsive" />
+          {{else}}
+          <img src="{{c.url (nameHelper this.name) width=646 height=473 crop="scale"}}" class="img img-responsive" />
+          {{/if}}
+        </div>
+        </div>
+        {{/each}}
       </div>
-      </div>
-      {{/each}}
     </div>
   </div>
   {{>footer}}

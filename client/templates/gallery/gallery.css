@@ -16,3 +16,14 @@
 	top: 0px;
 	color: black;
 }
+.grid-item {
+  	width: 23%;
+  	border: 2px solid hsla(0, 0%, 0%, 0.5);
+  	margin: 5px;
+}
+#categories {
+	cursor: pointer;
+}
+#categories:hover {
+	text-decoration: underline;
+}

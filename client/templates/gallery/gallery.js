@@ -1,3 +1,4 @@
+
 Template.gallery.events({
   'submit form': function(e, t) {
     e.preventDefault();
@@ -45,13 +46,44 @@ Template.gallery.events({
     $('#postprice').text(this.price);
     $('#postcategory').text(this.category);
     $('.gallerypost').show();
+  },
+  'click #categories': function(e, t){
+    var keyword = $(e.target).text();
+    var pos = keyword.indexOf("(");
+    keyword = keyword.slice(0,pos);
+
+    $('.master').data('category', keyword);
   }
 });
 
+Template.gallery.onRendered(function(){
+  var $container = $('.grid');
+
+  Meteor.subscribe('allimages');
+
+  $container.imagesLoaded(function(){
+    $container.masonry({
+      itemSelector: '.grid-item'
+    });
+  });
+
+  var categorylist = {};
+
+  for (var j=0; j<ImageInfo.find().fetch().length; j++){
+    var cat = ImageInfo.find().fetch()[j].category;
+    if (cat in categorylist){
+      categorylist[cat]++;
+    }else{
+      categorylist[cat] = 1;
+    }
+  }
+  for (var i in categorylist){
+    $('#categorylisting').append('<li id="categories">' + i + " (" + categorylist[i] +")"+'</li>');
+  };
+
+});
+
 Template.gallery.helpers({
-  isAdmin: function(){
-    return Meteor.userId()===Meteor.users.findOne({username: "admin"})["_id"];
-  },
   images: function(){
     return ImageInfo.find({});
   },
@@ -60,6 +92,15 @@ Template.gallery.helpers({
   },
   isPortrait: function(orientation){
     return orientation==='portrait';
+  },
+  categoryMaker: function(){
+    var x = $('.master').data("category");
+
+    if (x==undefined){
+      return 'A_ALLIMAGES';
+    }else{
+      return $('.master').data("category");
+    }
   }
 });
 

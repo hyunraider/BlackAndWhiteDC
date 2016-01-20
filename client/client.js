@@ -4,3 +4,4 @@ $.cloudinary.config({
 Accounts.ui.config({
   passwordSignupFields: "USERNAME_ONLY"
 });
+sessionGalleryHandler = false;

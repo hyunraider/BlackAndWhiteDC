@@ -1,16 +1,9 @@
 Template.blog.helpers({
-  isAdmin: function(){
-    return Meteor.userId()===Meteor.users.findOne({username: "admin"})["_id"];
-  },
   blogposts: function() {
     return Blog.find();
   }
 });
-Template.blogshow.helpers({
-  isAdmin: function () {
-    return Meteor.userId()===Meteor.users.findOne({username: "admin"})["_id"];
-  }
-});
+
 
 Template.blogpost.onRendered(function(){
   this.$('#summernote').summernote({

@@ -30,3 +30,6 @@ accounts-ui
 accounts-password
 deepwell:authorization
 summernote:summernote
+sjors:meteor-masonry
+mrt:jquery-imagesloaded
+reywood:publish-composite
