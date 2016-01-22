@@ -13,7 +13,7 @@
     <div class="container col-sm-10"> 
       {{>gallerypost}}
       <div class="grid master">
-        {{#each images categoryMaker}}
+        {{#each images}}
         <div class="grid-item">
         {{#if isAdmin}}
           <button class="glyphicon glyphicon-remove" id='{{this.name}}'></button>

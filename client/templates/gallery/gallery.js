@@ -48,18 +48,17 @@ Template.gallery.events({
     $('.gallerypost').show();
   },
   'click #categories': function(e, t){
+    e.preventDefault();
     var keyword = $(e.target).text();
     var pos = keyword.indexOf("(");
-    keyword = keyword.slice(0,pos);
+    keyword = keyword.slice(0,pos-1);
 
-    $('.master').data('category', keyword);
+    Session.set('category', keyword);
   }
 });
 
 Template.gallery.onRendered(function(){
   var $container = $('.grid');
-
-  Meteor.subscribe('allimages');
 
   $container.imagesLoaded(function(){
     $container.masonry({
@@ -92,15 +91,6 @@ Template.gallery.helpers({
   },
   isPortrait: function(orientation){
     return orientation==='portrait';
-  },
-  categoryMaker: function(){
-    var x = $('.master').data("category");
-
-    if (x==undefined){
-      return 'A_ALLIMAGES';
-    }else{
-      return $('.master').data("category");
-    }
   }
 });
 

@@ -10,5 +10,8 @@ Meteor.methods({
     },
     showID: function(){
       console.log(Meteor.userId());
+    },
+    showSession: function(){
+      console.log(Session.get('category'));
     }
 });
