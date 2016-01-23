@@ -41,10 +41,11 @@
 	        <label for="inputWebsite">Link to Website</label>
 	        <input type="text" class="form-control" id="inputWebsite" placeholder="www.example.com">
 	      </div>
-	      <div class="form-group">
-	        <label for="inputDescription">Description</label>
-	        <input type="text" class="form-control" id="inputDescription" placeholder="">
-	      </div>
+	      
+	      <div id="summernote">
+        	Hello summernote
+      	  </div>
+	      
 	      <div class="form-group">
 		      <label>Type of Post</label>
 		      <select>
@@ -63,18 +64,21 @@
 </template>
 
 <template name="showing">
-	<div class="container-fluid" style="border: 2px white solid; color: white; width: 100%">
-		<span style="font-weight: bold;">Show Name</span>
-		<br>
-		{{#if this.image}}
-		<img src="#" class="img img-responsive">
+	<div class="container-fluid" style="border: 1px white solid; color: white; width: 100%; margin-bottom: 2px;">
+		{{#if isAdmin}}
+          <button class="glyphicon glyphicon-remove" id='{{this.name}}' style="color: black"></button>
+          <br>
+        {{/if}}
+		<h3 style="text-align: center">{{name}}</h3>
+		{{#if imageExist}}
+		<img src="{{c.url formatTitle}}" class="img img-responsive">
 		{{/if}}
 		<br>
-		<span>206 E. Peabody Dr, Champaign, IL 61820</span>
+		<span>{{address}}</span>
 		<br>
-		<span><a href="#">www.austinbae.com</a></span>
+		<span><a href="#">{{link}}</a></span>
 		<br>
-		<span>This is an example show that really doesn't mean anything.</span>
+		<span>{{{description}}}</span>
 	</div>
 </template>
 

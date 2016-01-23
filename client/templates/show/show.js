@@ -7,18 +7,18 @@ Template.showpost.events({
     	var name = $('#inputShow').val();
     	var address = $('#inputAddress').val();
     	var link = $('#inputWebsite').val();
-    	var description = $('#inputDescription').val();
+    	var content = $('#summernote').summernote('code');
     	var showtype = $('select option:selected').text();
     	
-    	if (files !== undefined){
+    	if (file !== undefined){
     		files.push(file);
-    		Show.insert({name: name, address: address, link: link, description: description, showtype: showtype, image: true});
+    		Show.insert({name: name, address: address, link: link, description: content, showtype: showtype, image: true});
 
 	    	Cloudinary.upload(files, {
 	    		public_id: 'BnW/SHOW_' + name
 	    	}, function(result){console.log(result);});
     	}else{
-    		Show.insert({name: name, address: address, link: link, description: description, showtype: showtype, image: false});
+    		Show.insert({name: name, address: address, link: link, description: content, showtype: showtype, image: false});
     	}
     	
 
@@ -26,6 +26,25 @@ Template.showpost.events({
     		this.reset();
     	});
 	}
+});
+
+Template.showing.events({
+	'click .glyphicon-remove': function(e, t){
+	    e.preventDefault();
+
+	    Cloudinary.delete('BnW/SHOW_' + e.target.id, function(result){
+	      console.log(result);
+	    });
+
+	    Show.remove({_id: Show.findOne({name: e.target.id})["_id"]});
+	}
+});
+
+Template.showpost.onRendered(function(){
+  this.$('#summernote').summernote({
+    height: 200,
+    focus: true
+  });
 });
 
 Template.show.helpers({
@@ -38,4 +57,13 @@ Template.show.helpers({
 	showAwards: function(){
 		return Show.find({showtype: "Awards"});
 	}
+});
+
+Template.showing.helpers({
+  formatTitle: function(){
+    return "BnW/SHOW_" + this.name;
+  },
+  imageExist: function(){
+  	return this.image;
+  }
 });

@@ -35,6 +35,9 @@
 
 <template name="blogshow">
   <div class="row">
+    {{#if isAdmin}}
+        <button class="glyphicon glyphicon-remove" id='{{title}}'></button>
+    {{/if}}
     <div class="col-sm-8 col-sm-offset-2">
       <table style="width: 100%">
         <tr class="greyTable"><td style="padding-left: 10px;">{{title}}</td></tr>
