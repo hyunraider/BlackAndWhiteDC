@@ -1,4 +1,3 @@
-
 Template.gallery.events({
   'submit form': function(e, t) {
     e.preventDefault();
@@ -35,7 +34,7 @@ Template.gallery.events({
       console.log(result);
     });
 
-    ImageInfo.remove({_id: ImageInfo.findOne({name: e.target.id})["_id"]});
+    ImageInfo.remove({_id: ImageInfo.findOne({name: e.target._id})["_id"]});
   },
   'click .galleryimage': function(e, t){
     e.preventDefault;
@@ -52,20 +51,35 @@ Template.gallery.events({
     var keyword = $(e.target).text();
     var pos = keyword.indexOf("(");
     keyword = keyword.slice(0,pos-1);
-
+    /*$('.grid-item').each(function(){
+      $grid.masonry('remove', this).masonry('layout');
+    });*/
     Session.set('category', keyword);
+    Session.set('lazyloadLimit', 5);
+    Meteor.setTimeout(function(){
+      Session.set('pause', !Session.get('pause'));
+    }, 10);
+    
+  },
+  'click #allcategory': function(e, t){
+    e.preventDefault();
+    Session.set('category', null);
+    Session.set('lazyloadLimit', 5);
+    
+    Meteor.setTimeout(function(){
+      Session.set('pause', !Session.get('pause'));
+    }, 10);
+  },
+  'click #testing': function(e, t) {
+    e.preventDefault();
+    Session.set('lazyloadLimit', Session.get('lazyloadLimit')+5);
+    Meteor.setTimeout(function(){
+      Session.set('pause', !Session.get('pause'));
+    }, 10);
   }
 });
 
 Template.gallery.onRendered(function(){
-  var $container = $('.grid');
-
-  $container.imagesLoaded(function(){
-    $container.masonry({
-      itemSelector: '.grid-item'
-    });
-  });
-
   var categorylist = {};
 
   for (var j=0; j<ImageInfo.find().fetch().length; j++){
@@ -79,18 +93,60 @@ Template.gallery.onRendered(function(){
   for (var i in categorylist){
     $('#categorylisting').append('<li id="categories">' + i + " (" + categorylist[i] +")"+'</li>');
   };
+});
 
+Template.subgallery.onRendered(function(){
+  var $container = $('.grid');
+  $grid = $container.masonry({
+        itemSelector: '.grid-item'
+    });
+  $grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
+  });
+
+  Tracker.autorun(function(){
+    Session.get('pause');
+    $grid.masonry('destroy');
+    $grid.masonry({
+      itemSelector: '.grid-item'
+    });
+    $grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
+  });
+  }); 
 });
 
 Template.gallery.helpers({
   images: function(){
-    return ImageInfo.find({});
+    if (Session.get('category')==null){
+      return ImageInfo.find();
+    }else{
+      return ImageInfo.find({category: Session.get('category')});
+    }
   },
+  
+  sessioncat: function(){
+    return Session.get('category');
+  },
+
+  pause: function(){
+    return !Session.get('pause');
+  }
+});
+
+Template.subgallery.helpers({
   nameHelper: function(name){
     return 'BnW/' + name;
   },
   isPortrait: function(orientation){
     return orientation==='portrait';
+  },
+  images: function (cat) {
+    if (cat==null){
+      return ImageInfo.find({}, {limit: Session.get('lazyloadLimit')});
+    }else{
+      return ImageInfo.find({category: cat});
+    }
   }
 });
 

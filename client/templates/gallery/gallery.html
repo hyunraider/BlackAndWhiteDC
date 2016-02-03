@@ -7,31 +7,37 @@
     <div class="col-sm-2">
       <h3 style="color:white; text-align: center; font-family: Cambria, Georgia, serif">Photo Category</h3>
       <ul id="categorylisting" style="color:white">
-
+        <li id="allcategory">Show All</li>
       </ul>
     </div>
     <div class="container col-sm-10"> 
       {{>gallerypost}}
-      <div class="grid master">
-        {{#each images}}
-        <div class="grid-item">
+      {{> subgallery category=sessioncat}}
+      <br>
+      <button id="testing" class="center-block">Load More</button>
+    </div>
+  </div>
+  {{>footer}}
+</template>
+
+<template name="subgallery">
+  <div class="grid master">
+    {{#each images category}}
+      <div class="grid-item col-sm-3">
         {{#if isAdmin}}
           <button class="glyphicon glyphicon-remove" id='{{this.name}}'></button>
           <br>
         {{/if}}
-        <div class="galleryimage" style="">
-          {{#if isPortrait this.orientation}}
-          <img src="{{c.url (nameHelper this.name) width=473 height=646 crop="scale"}}" class="img img-responsive" />
-          {{else}}
-          <img src="{{c.url (nameHelper this.name) width=646 height=473 crop="scale"}}" class="img img-responsive" />
-          {{/if}}
+          <div class="galleryimage" style="">
+            {{#if isPortrait this.orientation}}
+            <img src="{{c.url (nameHelper this.name) width=400 height=646 crop="scale"}}" class="img img-responsive" />
+            {{else}}
+            <img src="{{c.url (nameHelper this.name) width=646 height=473 crop="scale"}}" class="img img-responsive" />
+            {{/if}}
+          </div>
         </div>
-        </div>
-        {{/each}}
-      </div>
-    </div>
+    {{/each}}
   </div>
-  {{>footer}}
 </template>
 
 <template name="galleryedit">

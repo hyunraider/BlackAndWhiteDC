@@ -17,13 +17,20 @@
 	color: black;
 }
 .grid-item {
-  	width: 23%;
   	border: 2px solid hsla(0, 0%, 0%, 0.5);
-  	margin: 5px;
+  	margin: 0px;
+  	padding: 3px;
 }
-#categories {
+#categories, #allcategory {
 	cursor: pointer;
 }
-#categories:hover {
+#categories:hover, #allcategory:hover {
 	text-decoration: underline;
+}
+
+#testing {
+	background-color: black;
+	height: 40px;
+	width: 100%;
+	color: white;
 }

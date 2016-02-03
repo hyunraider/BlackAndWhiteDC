@@ -6,11 +6,14 @@ Accounts.ui.config({
 });
 sessionGalleryHandler = false;
 
+Session.setDefault('lazyloadLimit', 5);
 Meteor.subscribe('allimages');
+Session.setDefault('pause', false);
+
 Session.setDefault('category', null);
-Tracker.autorun(function(){
+/*Tracker.autorun(function(){
 	Meteor.subscribe('categoryimages', Session.get('category'));
 	console.log('this is working');
 
   	$('.grid').masonry('reloadItems');
-});
+});*/
