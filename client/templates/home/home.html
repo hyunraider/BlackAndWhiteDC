@@ -40,6 +40,10 @@
         <li><a href="/show">Shows and Awards</a></li>
         <li><a href="#" class="inactivelink">|</a></li>
         <li><a href="/blog">Photo Essays</a></li>
+        {{#if isAdmin}}
+        <li><a href="#" class="inactivelink">|</a></li>
+        <li><a href="#">Admin Portal</a></li>
+        {{/if}}
       </ul>
     </div>
   </div>

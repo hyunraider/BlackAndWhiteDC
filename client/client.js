@@ -6,7 +6,7 @@ Accounts.ui.config({
 });
 sessionGalleryHandler = false;
 
-Session.setDefault('lazyloadLimit', 5);
+Session.setDefault('lazyloadLimit', 15);
 Meteor.subscribe('allimages');
 Session.setDefault('pause', false);
 

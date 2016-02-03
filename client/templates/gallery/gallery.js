@@ -34,7 +34,7 @@ Template.gallery.events({
       console.log(result);
     });
 
-    ImageInfo.remove({_id: ImageInfo.findOne({name: e.target._id})["_id"]});
+    ImageInfo.remove({_id: ImageInfo.findOne({name: e.target.id})["_id"]});
   },
   'click .galleryimage': function(e, t){
     e.preventDefault;
@@ -55,7 +55,7 @@ Template.gallery.events({
       $grid.masonry('remove', this).masonry('layout');
     });*/
     Session.set('category', keyword);
-    Session.set('lazyloadLimit', 5);
+    Session.set('lazyloadLimit', 15);
     Meteor.setTimeout(function(){
       Session.set('pause', !Session.get('pause'));
     }, 10);
@@ -64,7 +64,7 @@ Template.gallery.events({
   'click #allcategory': function(e, t){
     e.preventDefault();
     Session.set('category', null);
-    Session.set('lazyloadLimit', 5);
+    Session.set('lazyloadLimit', 15);
     
     Meteor.setTimeout(function(){
       Session.set('pause', !Session.get('pause'));
