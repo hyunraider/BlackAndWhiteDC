@@ -7,7 +7,8 @@ Router.configure({
     'contact': {to: 'contact'},
     'gallery': {to: 'gallery'},
     'private': {to: 'private'},
-    'show': {to: 'show'}
+    'show': {to: 'show'},
+    'admin': {to: 'admin'}
   }
 });
 

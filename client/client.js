@@ -9,6 +9,7 @@ sessionGalleryHandler = false;
 Session.setDefault('lazyloadLimit', 15);
 Meteor.subscribe('allimages');
 Session.setDefault('pause', false);
+Session.setDefault('search', null);
 
 Session.setDefault('category', null);
 /*Tracker.autorun(function(){
