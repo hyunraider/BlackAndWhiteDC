@@ -5,6 +5,14 @@ Meteor.publish('categoryimages', function(category){
 	return ImageInfo.find({category: category});
 });
 
+Meteor.publish('shows', function(){
+	return Show.find({});
+});
+
+Meteor.publish('blog', function(){
+	return Blog.find({});
+})
+
 Meteor.publish('lazyload-posts', function (limit) {
 	return ImageInfo.find({}, {
 		limit: limit,

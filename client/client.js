@@ -8,6 +8,8 @@ sessionGalleryHandler = false;
 
 Session.setDefault('lazyloadLimit', 15);
 Meteor.subscribe('allimages');
+Meteor.subscribe('shows');
+Meteor.subscribe('blog');
 Session.setDefault('pause', false);
 Session.setDefault('search', null);
 
