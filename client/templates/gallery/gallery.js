@@ -19,15 +19,17 @@ Template.gallery.events({
     console.log(file);
     ImageInfo.insert({name: name, description: description, category: category, price: price, orientation: orientation});
 
-    Cloudinary.upload(files, {
+    Meteor.setTimeout(function(){
+      Cloudinary.upload(files, {
       public_id: 'BnW/' + name
-    }, function(result){console.log(result);});
-
+      }, function(result){console.log(result);});
+    }, 500);
+    
     $('#submitPicture').each(function(){
       this.reset();
     });
   },
-  'click .glyphicon-remove': function(e, t){
+  'click .absolutedelete': function(e, t){
     e.preventDefault();
 
     Cloudinary.delete('BnW/' + e.target.id, function(result){
@@ -38,13 +40,17 @@ Template.gallery.events({
   },
   'click .galleryimage': function(e, t){
     e.preventDefault;
+    Meteor.setTimeout(function(){}, 500);
     var target = e.target;
     $('#postimage').attr('src', $(target).attr('src'));
     $('#posttitle').text(this.name);
     $('#posttext').text(this.description);
     $('#postprice').text(this.price);
     $('#postcategory').text(this.category);
-    $('.gallerypost').show();
+    Session.set('isportrait', this.orientation);
+    Meteor.setTimeout(function(){
+       $('.gallerypost').show();
+    }, 800);
   },
   'click #categories': function(e, t){
     e.preventDefault();
@@ -150,6 +156,11 @@ Template.subgallery.helpers({
   }
 });
 
+Template.gallerypost.helpers({
+  portrait: function () {
+    return Session.get('isportrait')==='portrait';
+  }
+});
 Template.gallerypost.events({
   'click .exit': function (e, t) {
     e.preventDefault();

@@ -11,6 +11,9 @@
       </ul>
     </div>
     <div class="container col-sm-10"> 
+      <div class='container' style="margin-left: 0px;">
+        <p style="color: white; padding-left: 0px; margin-left: 0px; padding-right: 50px;">Welcome to the gallery. The price listed on each picture is for a framed 8x10 or 8x12 picture.  For aesthetic reasons, I frame some pictures in a frame with no matte (so finished product is 8x10 or 8x12 in size). Most will arrive framed in a black aluminum frame with a simple white matte- total size 11x14. The price includes shipping costs. It does not include DC Sales Tax, which will be added at check out. If you are interested in buying a print without a frame or want an alternative size, please email me at BlackandWhiteDC.com for a price quote.</p>
+      </div>
       {{>gallerypost}}
       {{> subgallery category=sessioncat}}
       <br>
@@ -25,7 +28,7 @@
     {{#each images category}}
       <div class="grid-item col-sm-3">
         {{#if isAdmin}}
-          <button class="glyphicon glyphicon-remove" id='{{this.name}}'></button>
+          <button class="glyphicon glyphicon-remove absolutedelete" id='{{this.name}}'></button>
           <br>
         {{/if}}
           <div class="galleryimage" style="">
@@ -71,15 +74,14 @@
 
 <template name="gallerypost">
   <div class="container gallerypost" style="display:none;">
-    <div class="row">
-      <div class="col-xs-5 col-xs-offset-1" style="">
-        <img src="#" style="width: 100%;" id="postimage" class="">
-      </div>
-      <div class="col-xs-6" style="color: white">
-        <button class="glyphicon glyphicon-remove exit"></button>
-        <h2 id="posttitle" style="text-align: center"></h2>
+    {{#if portrait}}
+    <div class="row swag" style="height: 80%; position: fixed;">
+      <img src="#" style="height: 88%; width: 35%; position: fixed; left: 10%;" id="postimage" class="img img-responsive">
+      <button class="glyphicon glyphicon-remove exit" style="position: fixed; top: 5%; right: 5%;"></button>
+      <div style="position: fixed; top: 8%; left:50%; width: 40%;">
+        <h2 id="posttitle" style="text-align: center;"></h2>
         <h4 style="text-align: center; font-style: italic;">By Monica Schneider</h4>
-        <p id="posttext"></p>
+        <p id="posttext" style=""></p>
         <br>
         <span>Price:</span> <span id="postprice"></span>
         <br>
@@ -89,6 +91,27 @@
         <br>
         <span>Category: </span> <span id='postcategory'></span>
       </div>
-    </div>  
+    </div>
+    {{else}}
+    <div class="row swag" style="heigh: 80%; position:fixed;">
+      <button class="glyphicon glyphicon-remove exit" style="position: fixed; top: 5%; right: 5%;"></button>
+      <div style='position: fixed; top: 6%; width: 100%;'>
+        <h2 id="posttitle" style="text-align: center;"></h2>
+        <h4 style="text-align: center; font-style: italic;">By Monica Schneider</h4>
+      </div>
+      <img src="#" style="height: 75%; width: 55%; position: fixed; left: 8%; top: 18%" id="postimage" class="img img-responsive">
+      <div style="position: fixed; top: 20%; left:65%; width: 30%;">
+        <p id="posttext" style=""></p>
+        <br>
+        <span>Price:</span> <span id="postprice"></span>
+        <br>
+        <span>Quantity</span>
+        <input type="number" id="postquantity" style="color: black; width: 50px; margin-left: 20px; margin-right: 10px" value=0>
+        <button type="submit" class="btn btn-default">Add to Cart</button>
+        <br>
+        <span>Category: </span> <span id='postcategory'></span>
+      </div>
+    </div>
+    {{/if}}  
   </div>
 </template>
