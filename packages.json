@@ -1,3 +1,8 @@
 {
+<<<<<<< HEAD
   
+=======
+  "auth-net-request": "2.2.4",
+  "auth-net-cim": "2.3.0" 
+>>>>>>> 831329867e9fcbaaf8c3fa24dc994bfacc3b7e4a
 }
