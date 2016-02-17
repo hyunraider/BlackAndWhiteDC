@@ -31,7 +31,5 @@ deepwell:authorization
 summernote:summernote
 sjors:meteor-masonry
 mrt:jquery-imagesloaded
-meteorhacks:npm
 
 
-npm-container
