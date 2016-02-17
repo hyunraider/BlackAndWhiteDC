@@ -7,7 +7,7 @@ Accounts.ui.config({
 sessionGalleryHandler = false;
 
 Session.setDefault('lazyloadLimit', 15);
-Meteor.subscribe('allimages');
+Meteor.subscribe('lazyload-posts', Session.get('lazyloadLimit'));
 Meteor.subscribe('shows');
 Meteor.subscribe('blog');
 Session.setDefault('pause', false);

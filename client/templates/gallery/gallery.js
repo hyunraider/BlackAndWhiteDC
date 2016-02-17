@@ -1,3 +1,7 @@
+Tracker.autorun(function(){
+  Meteor.subscribe('lazyload-posts', Session.get('lazyloadLimit'));
+});
+
 Template.gallery.events({
   'submit form': function(e, t) {
     e.preventDefault();
@@ -19,15 +23,17 @@ Template.gallery.events({
     console.log(file);
     ImageInfo.insert({name: name, description: description, category: category, price: price, orientation: orientation});
 
-    Meteor.setTimeout(function(){
-      Cloudinary.upload(files, {
-      public_id: 'BnW/' + name
-      }, function(result){console.log(result);});
-    }, 500);
+    Cloudinary.upload(files, {
+    public_id: 'BnW/' + name
+    }, function(result){console.log(result);});
+   
     
-    $('#submitPicture').each(function(){
+    Meteor.setTimeout(function(){
+      $('#submitPicture').each(function(){
       this.reset();
     });
+    }, 1000);
+    
   },
   'click .absolutedelete': function(e, t){
     e.preventDefault();
@@ -102,6 +108,7 @@ Template.gallery.onRendered(function(){
 });
 
 Template.subgallery.onRendered(function(){
+  Meteor.subscribe('allimages');
   var $container = $('.grid');
   $grid = $container.masonry({
         itemSelector: '.grid-item'
@@ -120,6 +127,7 @@ Template.subgallery.onRendered(function(){
     $grid.masonry('layout');
   });
   }); 
+  Session.set('lazyloadLimit', 15);
 });
 
 Template.gallery.helpers({

@@ -16,9 +16,6 @@ Meteor.publish('blog', function(){
 Meteor.publish('lazyload-posts', function (limit) {
 	return ImageInfo.find({}, {
 		limit: limit,
-		fields: {
-			text: 0
-		},
 		sort: {timeCreated: -1}
 	});
 });
