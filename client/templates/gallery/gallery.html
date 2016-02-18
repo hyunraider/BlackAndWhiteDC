@@ -8,6 +8,9 @@
       <h3 style="color:white; text-align: center; font-family: Cambria, Georgia, serif">Photo Category</h3>
       <ul id="categorylisting" style="color:white">
         <li id="allcategory">Show All</li>
+        {{#each catty}}
+        <li id="categories">{{name}}{{number}}</li>
+        {{/each}}
       </ul>
     </div>
     <div class="container col-sm-10"> 

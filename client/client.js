@@ -10,6 +10,7 @@ Session.setDefault('lazyloadLimit', 15);
 Meteor.subscribe('lazyload-posts', Session.get('lazyloadLimit'));
 Meteor.subscribe('shows');
 Meteor.subscribe('blog');
+Meteor.subscribe('lel');
 Session.setDefault('pause', false);
 Session.setDefault('search', null);
 

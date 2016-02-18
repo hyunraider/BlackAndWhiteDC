@@ -91,7 +91,7 @@ Template.gallery.events({
   }
 });
 
-Template.gallery.onRendered(function(){
+/*Template.gallery.onCreated(function(){
   var categorylist = {};
 
   for (var j=0; j<ImageInfo.find().fetch().length; j++){
@@ -106,6 +106,9 @@ Template.gallery.onRendered(function(){
     $('#categorylisting').append('<li id="categories">' + i + " (" + categorylist[i] +")"+'</li>');
   };
 });
+*/
+
+categorylist = {};
 
 Template.subgallery.onRendered(function(){
   Meteor.subscribe('allimages');
@@ -137,6 +140,10 @@ Template.gallery.helpers({
     }else{
       return ImageInfo.find({category: Session.get('category')});
     }
+  },
+
+  catty: function(){
+    return CategoryList.find();
   },
   
   sessioncat: function(){

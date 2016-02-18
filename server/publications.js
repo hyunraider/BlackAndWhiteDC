@@ -19,3 +19,7 @@ Meteor.publish('lazyload-posts', function (limit) {
 		sort: {timeCreated: -1}
 	});
 });
+
+Meteor.publish('lel', function(){
+	return CategoryList.find({});
+})
