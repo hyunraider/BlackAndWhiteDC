@@ -1,8 +1,14 @@
+Meteor.subscribe('lel');
+
 Meteor.startup(function(){
+
   
-  console.log('Adding Categories');
-  Meteor.call('removeCategory');
+  Tracker.autorun(function(){
+    Meteor.call('removeCategory');
+  
   var categorylist = {};
+ 
+  
   for (var j=0; j<ImageInfo.find().fetch().length; j++){
     var cat = ImageInfo.find().fetch()[j].category;
     if (cat in categorylist){
@@ -11,13 +17,12 @@ Meteor.startup(function(){
       categorylist[cat] = 1;
     }
   }
-  
-  Meteor.setTimeout(function(){
-    console.log(categorylist);
-    for (var i in categorylist){
+
+  console.log(categorylist);
+  for (var i in categorylist){
     CategoryList.insert({name: i, number: " (" +categorylist[i] + ")"});
-    };
-  }, 200)
+  };
+  });
   
 });
 
