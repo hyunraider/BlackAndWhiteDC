@@ -36,9 +36,9 @@
         {{/if}}
           <div class="galleryimage" style="">
             {{#if isPortrait this.orientation}}
-            <img src="{{c.url (nameHelper this.name) width=400 height=646 crop="scale"}}" class="img img-responsive" />
+            <img src="https://res.cloudinary.com/hyunraider/image/upload/{{nameHelper this.name}}" class="img img-responsive" />
             {{else}}
-            <img src="{{c.url (nameHelper this.name) width=646 height=473 crop="scale"}}" class="img img-responsive" />
+            <img src="https://res.cloudinary.com/hyunraider/image/upload/{{nameHelper this.name}}" class="img img-responsive" />
             {{/if}}
           </div>
         </div>

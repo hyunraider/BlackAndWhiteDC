@@ -88,6 +88,7 @@ Template.gallery.events({
     Meteor.setTimeout(function(){
       Session.set('pause', !Session.get('pause'));
     }, 10);
+    return false;
   }
 });
 
