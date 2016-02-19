@@ -1,5 +1,6 @@
 Meteor.startup(function(){
-  console.log('b1');
+  
+  console.log('Adding Categories');
   Meteor.call('removeCategory');
   var categorylist = {};
   for (var j=0; j<ImageInfo.find().fetch().length; j++){
@@ -10,10 +11,14 @@ Meteor.startup(function(){
       categorylist[cat] = 1;
     }
   }
-  console.log(categorylist);
-  for (var i in categorylist){
+  
+  Meteor.setTimeout(function(){
+    console.log(categorylist);
+    for (var i in categorylist){
     CategoryList.insert({name: i, number: " (" +categorylist[i] + ")"});
-  };
+    };
+  }, 200)
+  
 });
 
 $.cloudinary.config({
